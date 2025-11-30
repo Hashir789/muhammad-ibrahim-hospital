@@ -1,5 +1,6 @@
 import { HelmetProvider } from 'react-helmet-async';
 import { Container, Box } from '@mui/material';
+import EmergencyBar from './EmergencyBar';
 import Header from './Header';
 import Footer from './Footer';
 import SkipToContent from './SkipToContent';
@@ -10,6 +11,7 @@ const Layout = ({ children }) => {
     <HelmetProvider>
       <Box component="div" sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
         <SkipToContent />
+        <EmergencyBar />
         <Header />
         <Container 
           component="main" 
