@@ -32,6 +32,8 @@ const Header = () => {
     { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
     { label: 'Services', path: '/services' },
+    { label: 'Departments', path: '/departments' },
+    { label: 'Doctors', path: '/doctors' },
     { label: 'Contact', path: '/contact' },
   ];
 
@@ -40,8 +42,8 @@ const Header = () => {
   };
 
   const handleBookAppointment = () => {
-    // Navigate to contact page or appointment booking page
-    navigate('/contact');
+    // Navigate to appointment booking page
+    navigate('/book-appointment');
     if (mobileOpen) {
       setMobileOpen(false);
     }

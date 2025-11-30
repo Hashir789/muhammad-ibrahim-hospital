@@ -48,26 +48,26 @@ const EmergencyBar = () => {
         }}
       >
         Emergency 24/7 • Call:{' '}
-        <Box
-          component="a"
-          href="tel:+92XXXXXXXXX"
-          sx={{
-            color: 'inherit',
-            textDecoration: 'underline',
-            fontWeight: 700,
-            '&:hover': {
-              opacity: 0.9,
-            },
-            '&:focus-visible': {
-              outline: '2px solid white',
-              outlineOffset: '2px',
-              borderRadius: '2px',
-            },
-          }}
-          aria-label="Call emergency number +92 XX XXXX XXXX"
-        >
-          +92 XX XXXX XXXX
-        </Box>
+            <Box
+              component="a"
+              href="tel:+923335469001"
+              sx={{
+                color: 'inherit',
+                textDecoration: 'underline',
+                fontWeight: 700,
+                '&:hover': {
+                  opacity: 0.9,
+                },
+                '&:focus-visible': {
+                  outline: '2px solid white',
+                  outlineOffset: '2px',
+                  borderRadius: '2px',
+                },
+              }}
+              aria-label="Call emergency number +92 333 5469001"
+            >
+              +92 333 5469001
+            </Box>
       </Typography>
     </Box>
   );

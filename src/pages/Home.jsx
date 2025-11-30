@@ -71,7 +71,6 @@ const Home = () => {
   const [doctorsRef, doctorsVisible] = useIntersectionObserver();
   const [testimonialsRef, testimonialsVisible] = useIntersectionObserver();
   const [statsRef, statsVisible] = useIntersectionObserver();
-  const [newsRef, newsVisible] = useIntersectionObserver();
   const [ctaRef, ctaVisible] = useIntersectionObserver();
 
   const services = [
@@ -168,26 +167,6 @@ const Home = () => {
     { number: '15+', label: 'Departments', icon: <MedicalServicesIcon /> },
   ];
 
-  const news = [
-    {
-      title: 'New Cardiology Department Opens',
-      date: 'January 15, 2024',
-      excerpt: 'We are excited to announce the opening of our state-of-the-art cardiology department.',
-      image: '/api/placeholder/400/250',
-    },
-    {
-      title: 'Health Awareness Campaign',
-      date: 'January 10, 2024',
-      excerpt: 'Join us for our free health screening and awareness campaign this month.',
-      image: '/api/placeholder/400/250',
-    },
-    {
-      title: 'Telemedicine Services Available',
-      date: 'January 5, 2024',
-      excerpt: 'Now you can consult with our doctors from the comfort of your home.',
-      image: '/api/placeholder/400/250',
-    },
-  ];
 
   return (
     <>
@@ -247,7 +226,7 @@ const Home = () => {
                       variant="contained"
                       size="large"
                       startIcon={<CalendarTodayIcon />}
-                      onClick={() => navigate('/contact')}
+                      onClick={() => navigate('/book-appointment')}
                       sx={{
                         py: 1.5,
                         px: 4,
@@ -308,21 +287,22 @@ const Home = () => {
             <Grid item xs={12} md={6}>
               <Grow in={heroVisible} timeout={1000}>
                 <Box
+                  component="img"
+                  src="https://picsum.photos/1600/900?random=1"
+                  alt="Muhammad Ibrahim Hospital - Modern healthcare facility providing world-class medical services"
                   sx={{
-                    position: 'relative',
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
                     borderRadius: 4,
-                    overflow: 'hidden',
                     boxShadow: 6,
                     aspectRatio: '4/3',
                     backgroundColor: 'grey.200',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
                   }}
-                >
-                  <LocalHospitalIcon sx={{ fontSize: 200, color: 'grey.400' }} />
-                  {/* Placeholder for actual image */}
-                </Box>
+                  loading="eager"
+                  width={1600}
+                  height={900}
+                />
               </Grow>
             </Grid>
           </Grid>
@@ -540,12 +520,18 @@ const Home = () => {
                   >
                     <CardContent sx={{ p: 3 }}>
                       <Avatar
+                        src={`https://picsum.photos/400/400?random=${index + 10}`}
+                        alt={`${doctor.name} - ${doctor.specialty}`}
                         sx={{
                           width: 120,
                           height: 120,
                           mx: 'auto',
                           mb: 2,
                           bgcolor: 'primary.main',
+                          fontSize: '2.5rem',
+                        }}
+                        imgProps={{
+                          loading: 'lazy',
                         }}
                       >
                         {doctor.name.charAt(0)}
@@ -564,6 +550,72 @@ const Home = () => {
                       />
                     </CardContent>
                   </Card>
+                </Grow>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Stats Section */}
+      <Box
+        ref={statsRef}
+        component="section"
+        sx={{
+          py: { xs: 8, md: 12 },
+          backgroundColor: 'primary.main',
+          color: 'white',
+        }}
+      >
+        <Container maxWidth="xl">
+          <Fade in={statsVisible} timeout={600}>
+            <Box sx={{ textAlign: 'center', mb: 6 }}>
+              <Typography
+                variant="h2"
+                component="h2"
+                sx={{
+                  fontWeight: 700,
+                  mb: 2,
+                  fontSize: { xs: '2rem', md: '2.75rem' },
+                }}
+              >
+                Our Achievements
+              </Typography>
+            </Box>
+          </Fade>
+          <Grid container spacing={4}>
+            {stats.map((stat, index) => (
+              <Grid item xs={6} md={3} key={index}>
+                <Grow
+                  in={statsVisible}
+                  timeout={600 + index * 100}
+                >
+                  <Box sx={{ textAlign: 'center' }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        mb: 2,
+                        color: 'white',
+                      }}
+                    >
+                      {stat.icon}
+                    </Box>
+                    <Typography
+                      variant="h3"
+                      component="div"
+                      sx={{
+                        fontWeight: 700,
+                        mb: 1,
+                        fontSize: { xs: '2rem', md: '3rem' },
+                      }}
+                    >
+                      {stat.number}
+                    </Typography>
+                    <Typography variant="h6" sx={{ opacity: 0.9 }}>
+                      {stat.label}
+                    </Typography>
+                  </Box>
                 </Grow>
               </Grid>
             ))}
@@ -639,164 +691,6 @@ const Home = () => {
         </Container>
       </Box>
 
-      {/* Stats Section */}
-      <Box
-        ref={statsRef}
-        component="section"
-        sx={{
-          py: { xs: 8, md: 12 },
-          backgroundColor: 'primary.main',
-          color: 'white',
-        }}
-      >
-        <Container maxWidth="xl">
-          <Fade in={statsVisible} timeout={600}>
-            <Box sx={{ textAlign: 'center', mb: 6 }}>
-              <Typography
-                variant="h2"
-                component="h2"
-                sx={{
-                  fontWeight: 700,
-                  mb: 2,
-                  fontSize: { xs: '2rem', md: '2.75rem' },
-                }}
-              >
-                Our Achievements
-              </Typography>
-            </Box>
-          </Fade>
-          <Grid container spacing={4}>
-            {stats.map((stat, index) => (
-              <Grid item xs={6} md={3} key={index}>
-                <Grow
-                  in={statsVisible}
-                  timeout={600 + index * 100}
-                >
-                  <Box sx={{ textAlign: 'center' }}>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        mb: 2,
-                        color: 'white',
-                      }}
-                    >
-                      {stat.icon}
-                    </Box>
-                    <Typography
-                      variant="h3"
-                      component="div"
-                      sx={{
-                        fontWeight: 700,
-                        mb: 1,
-                        fontSize: { xs: '2rem', md: '3rem' },
-                      }}
-                    >
-                      {stat.number}
-                    </Typography>
-                    <Typography variant="h6" sx={{ opacity: 0.9 }}>
-                      {stat.label}
-                    </Typography>
-                  </Box>
-                </Grow>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* News Section */}
-      <Box
-        ref={newsRef}
-        component="section"
-        sx={{
-          py: { xs: 8, md: 12 },
-          backgroundColor: 'grey.50',
-        }}
-      >
-        <Container maxWidth="xl">
-          <Fade in={newsVisible} timeout={600}>
-            <Box sx={{ textAlign: 'center', mb: 6 }}>
-              <Typography
-                variant="h2"
-                component="h2"
-                sx={{
-                  fontWeight: 700,
-                  color: 'primary.main',
-                  mb: 2,
-                  fontSize: { xs: '2rem', md: '2.75rem' },
-                }}
-              >
-                Latest News & Updates
-              </Typography>
-              <Typography
-                variant="h6"
-                sx={{
-                  color: 'text.secondary',
-                  maxWidth: '700px',
-                  mx: 'auto',
-                }}
-              >
-                Stay informed about our latest developments and health tips
-              </Typography>
-            </Box>
-          </Fade>
-          <Grid container spacing={4}>
-            {news.map((item, index) => (
-              <Grid item xs={12} md={4} key={index}>
-                <Grow
-                  in={newsVisible}
-                  timeout={600 + index * 100}
-                >
-                  <Card
-                    sx={{
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      transition: 'transform 0.3s, box-shadow 0.3s',
-                      '&:hover': {
-                        transform: 'translateY(-8px)',
-                        boxShadow: 8,
-                      },
-                    }}
-                  >
-                    <CardMedia
-                      component="div"
-                      sx={{
-                        height: 200,
-                        backgroundColor: 'grey.300',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <LocalHospitalIcon sx={{ fontSize: 80, color: 'grey.500' }} />
-                    </CardMedia>
-                    <CardContent sx={{ flexGrow: 1, p: 3 }}>
-                      <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: 'block' }}>
-                        {item.date}
-                      </Typography>
-                      <Typography variant="h6" component="h3" sx={{ fontWeight: 600, mb: 2 }}>
-                        {item.title}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                        {item.excerpt}
-                      </Typography>
-                      <Button
-                        endIcon={<ArrowForwardIcon />}
-                        sx={{ textTransform: 'none' }}
-                      >
-                        Read More
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </Grow>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
       {/* CTA Section */}
       <Box
         ref={ctaRef}
@@ -841,7 +735,7 @@ const Home = () => {
                   color="secondary"
                   size="large"
                   startIcon={<CalendarTodayIcon />}
-                  onClick={() => navigate('/contact')}
+                  onClick={() => navigate('/book-appointment')}
                   sx={{
                     py: 1.5,
                     px: 4,

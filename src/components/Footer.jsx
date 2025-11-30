@@ -84,10 +84,12 @@ const Footer = () => {
   };
 
   const quickLinks = [
-    { label: 'About Us', path: '/about' },
-    { label: 'Services', path: '/services' },
-    { label: 'Contact', path: '/contact' },
-    { label: 'Book Appointment', path: '/contact' },
+    { label: 'About Us', path: '/about', key: 'about' },
+    { label: 'Services', path: '/services', key: 'services' },
+    { label: 'Departments', path: '/departments', key: 'departments' },
+    { label: 'Doctors', path: '/doctors', key: 'doctors' },
+    { label: 'Contact', path: '/contact', key: 'contact' },
+    { label: 'Book Appointment', path: '/contact', key: 'book-appointment' },
   ];
 
   const patientResources = [
@@ -129,23 +131,22 @@ const Footer = () => {
                   <LocationOnIcon sx={{ fontSize: 20, color: 'grey.400', mt: 0.5 }} aria-hidden="true" />
                   <Box>
                     <Typography variant="body2" sx={{ color: 'grey.400', lineHeight: 1.6 }}>
-                      123 Hospital Street<br />
-                      City, Country
+                      Shaheenabad Lahore, 54000, Pakistan
                     </Typography>
                   </Box>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                   <PhoneIcon sx={{ fontSize: 20, color: 'grey.400' }} aria-hidden="true" />
                   <MuiLink
-                    href="tel:+92XXXXXXXXX"
+                    href="tel:+923335469001"
                     sx={{
                       color: 'grey.400',
                       textDecoration: 'none',
                       '&:hover': { color: 'white' },
                     }}
-                    aria-label="Call us at +92 XX XXXX XXXX"
+                    aria-label="Call us at +92 333 5469001"
                   >
-                    <Typography variant="body2">+92 XX XXXX XXXX</Typography>
+                    <Typography variant="body2">+92 333 5469001</Typography>
                   </MuiLink>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -169,7 +170,7 @@ const Footer = () => {
               <Box component="nav" aria-label="Quick links navigation" sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                 {quickLinks.map((link) => (
                   <MuiLink
-                    key={link.path}
+                    key={link.key || link.path}
                     component={Link}
                     to={link.path}
                     sx={{
@@ -289,24 +290,23 @@ const Footer = () => {
                   <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
                     <LocationOnIcon sx={{ fontSize: 20, color: 'grey.400', mt: 0.5 }} aria-hidden="true" />
                     <Box>
-                      <Typography variant="body2" sx={{ color: 'grey.400', lineHeight: 1.6 }}>
-                        123 Hospital Street<br />
-                        City, Country
-                      </Typography>
+                        <Typography variant="body2" sx={{ color: 'grey.400', lineHeight: 1.6 }}>
+                          Shaheenabad Lahore, 54000, Pakistan
+                        </Typography>
                     </Box>
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                     <PhoneIcon sx={{ fontSize: 20, color: 'grey.400' }} aria-hidden="true" />
                     <MuiLink
-                      href="tel:+92XXXXXXXXX"
+                      href="tel:+923335469001"
                       sx={{
                         color: 'grey.400',
                         textDecoration: 'none',
                         '&:hover': { color: 'white' },
                       }}
-                      aria-label="Call us at +92 XX XXXX XXXX"
+                      aria-label="Call us at +92 333 5469001"
                     >
-                      <Typography variant="body2">+92 XX XXXX XXXX</Typography>
+                      <Typography variant="body2">+92 333 5469001</Typography>
                     </MuiLink>
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -333,7 +333,7 @@ const Footer = () => {
                 <Box component="nav" aria-label="Quick links navigation" sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                   {quickLinks.map((link) => (
                     <MuiLink
-                      key={link.path}
+                      key={link.key || link.path}
                       component={Link}
                       to={link.path}
                       sx={{
